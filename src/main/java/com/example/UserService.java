@@ -3,7 +3,6 @@ package main.java.com.example;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
 
 public class UserService {
 
@@ -16,7 +15,7 @@ public class UserService {
         try (Connection conn =
             DriverManager.getConnection("jdbc:mysql://localhost/db",
                     "root", password);
-             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM users WHERE name = ?")) {
+             PreparedStatement pstmt = conn.prepareStatement("SELECT id, name, email FROM users WHERE name = ?")) {
             
             pstmt.setString(1, username);
             pstmt.executeQuery();
